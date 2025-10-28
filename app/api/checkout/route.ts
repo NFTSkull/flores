@@ -3,6 +3,13 @@ import { stripe } from "@/lib/stripe";
 
 export async function POST(req: NextRequest) {
   try {
+    if (!stripe) {
+      return NextResponse.json(
+        { error: "Stripe no está configurado. Por favor, configura las variables de entorno." },
+        { status: 503 }
+      );
+    }
+
     const { items } = await req.json();
 
     if (!items || items.length === 0) {
@@ -40,4 +47,3 @@ export async function POST(req: NextRequest) {
     );
   }
 }
-

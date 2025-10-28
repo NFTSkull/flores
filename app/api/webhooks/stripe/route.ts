@@ -13,6 +13,11 @@ export async function POST(req: NextRequest) {
   let event: Stripe.Event;
 
   try {
+    if (!stripe) {
+      console.error("Stripe no está configurado");
+      return new NextResponse("Stripe no configurado", { status: 503 });
+    }
+
     event = stripe.webhooks.constructEvent(
       raw,
       sig,
