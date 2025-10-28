@@ -45,7 +45,7 @@ export function Hero({ onOpenCustomForm }: HeroProps) {
         className="absolute top-0 left-0 w-full h-full object-cover object-center"
         style={{ minWidth: '100%', minHeight: '100%', width: 'auto', height: 'auto' }}
       >
-        <source src="/flores.mp4" type="video/mp4" />
+        <source src="/videos/elbueno.mp4" type="video/mp4" />
       </video>
 
       {/* Overlay rosa sutil */}
