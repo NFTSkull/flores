@@ -7,7 +7,7 @@ import Link from "next/link";
 import { Card, CardContent } from "@/components/ui/card";
 import { Flower2, Heart, Sparkles } from "lucide-react";
 
-export default function Home() {
+export default function HomePage() {
   const featuredProducts = products.slice(0, 6);
 
   return (
