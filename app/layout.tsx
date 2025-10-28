@@ -3,7 +3,6 @@ import { Inter, Playfair_Display } from "next/font/google";
 import "./globals.css";
 import { Header } from "@/components/header";
 import { Footer } from "@/components/footer";
-import { ThemeProvider } from "next-themes";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -17,8 +16,7 @@ const playfair = Playfair_Display({
 
 export const metadata: Metadata = {
   title: "Flores DeVolada - Ramos y Arreglos Florales en Monterrey",
-  description: "Ramos, arreglos y experiencias florales personalizadas en Monterrey. Entrega el mismo día con pago seguro.",
-  keywords: "flores, ramos, arreglos florales, Monterrey, regalos, eventos",
+  description: "Ramos, arreglos y experiencias florales personalizadas en Monterrey.",
 };
 
 export default function RootLayout({
@@ -27,15 +25,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="es" suppressHydrationWarning>
-      <body
-        className={`${inter.variable} ${playfair.variable} antialiased flex flex-col min-h-screen`}
-      >
-        <ThemeProvider attribute="class" defaultTheme="light" enableSystem={false}>
+    <html lang="es">
+      <body className={`${inter.variable} ${playfair.variable} antialiased`}>
+        <div className="flex flex-col min-h-screen">
           <Header />
           <main className="flex-1">{children}</main>
           <Footer />
-        </ThemeProvider>
+        </div>
       </body>
     </html>
   );
