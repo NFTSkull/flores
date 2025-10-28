@@ -1,46 +1,24 @@
-"use client";
-
 import { products } from "@/lib/products";
 import { notFound } from "next/navigation";
+import { ProductCard } from "@/components/product-card";
+import { ProductPageClient } from "./product-page-client";
+import { Button } from "@/components/ui/button";
+import Link from "next/link";
+import { ArrowLeft } from "lucide-react";
 import Image from "next/image";
 import { Price } from "@/components/price";
-import { Button } from "@/components/ui/button";
-import { ShoppingCart, ArrowLeft } from "lucide-react";
-import Link from "next/link";
-import { useState } from "react";
-import { ProductCard } from "@/components/product-card";
 
 interface ProductPageProps {
-  params: { slug: string };
+  params: Promise<{ slug: string }>;
 }
 
-export default function ProductPage({ params }: ProductPageProps) {
-  const product = products.find((p) => p.slug === params.slug);
+export default async function ProductPage({ params }: ProductPageProps) {
+  const { slug } = await params;
+  const product = products.find((p) => p.slug === slug);
 
   if (!product) {
     notFound();
   }
-
-  const [isAdding, setIsAdding] = useState(false);
-
-  const handleAddToCart = async () => {
-    setIsAdding(true);
-    try {
-      const response = await fetch("/api/cart/add", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ productId: product.id, quantity: 1 }),
-      });
-
-      if (response.ok) {
-        console.log("Producto agregado al carrito");
-      }
-    } catch (error) {
-      console.error("Error al agregar al carrito:", error);
-    } finally {
-      setIsAdding(false);
-    }
-  };
 
   const suggestedProducts = products.filter((p) => p.id !== product.id).slice(0, 4);
 
@@ -78,20 +56,10 @@ export default function ProductPage({ params }: ProductPageProps) {
 
             <p className="text-lg text-stone mb-8 leading-relaxed">{product.description}</p>
 
-            <div className="flex flex-col sm:flex-row gap-4 mb-8">
-              <Button
-                onClick={handleAddToCart}
-                disabled={isAdding}
-                size="lg"
-                className="flex-1 bg-rose-500 hover:bg-rose-600 text-white"
-              >
-                <ShoppingCart className="w-5 h-5 mr-2" />
-                {isAdding ? "Agregando..." : "Agregar al carrito"}
-              </Button>
-            </div>
+            <ProductPageClient productId={product.id} />
 
             {/* Tags */}
-            <div className="flex flex-wrap gap-2">
+            <div className="flex flex-wrap gap-2 mt-8">
               {product.tags.map((tag) => (
                 <span
                   key={tag}
@@ -121,4 +89,3 @@ export default function ProductPage({ params }: ProductPageProps) {
     </main>
   );
 }
-
