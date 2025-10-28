@@ -35,25 +35,12 @@ export default function CheckoutPage() {
     }
 
     setIsLoading(true);
-    try {
-      const response = await fetch("/api/checkout", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ items: cart.items }),
-      });
-
-      if (response.ok) {
-        const { url } = await response.json();
-        if (url) {
-          window.location.href = url;
-        }
-      }
-    } catch (error) {
-      console.error("Error en el checkout:", error);
-      alert("Hubo un error al procesar el pago. Por favor intenta de nuevo.");
-    } finally {
-      setIsLoading(false);
-    }
+    
+    // Simular checkout (Stripe deshabilitado temporalmente)
+    // TODO: Configurar Stripe más adelante
+    setTimeout(() => {
+      router.push("/exito");
+    }, 1000);
   }
 
   const total = getTotalPrice(cart);
@@ -71,7 +58,7 @@ export default function CheckoutPage() {
             <a href="/tienda">Explorar productos</a>
           </Button>
         </div>
-       </main>
+      </main>
     );
   }
 
@@ -132,11 +119,11 @@ export default function CheckoutPage() {
                 className="w-full bg-rose-500 hover:bg-rose-600 text-white"
               >
                 <CreditCard className="w-5 h-5 mr-2" />
-                {isLoading ? "Procesando..." : "Proceder al pago"}
+                {isLoading ? "Procesando..." : "Completar pedido"}
               </Button>
 
               <p className="text-xs text-stone text-center mt-4">
-                🔒 Pago seguro procesado por Stripe
+                ⚠️ Stripe deshabilitado temporalmente - Demo
               </p>
             </div>
           </div>
@@ -145,4 +132,3 @@ export default function CheckoutPage() {
     </main>
   );
 }
-
