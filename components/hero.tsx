@@ -35,11 +35,11 @@ export function Hero({ onOpenCustomForm }: HeroProps) {
         <source src="/videos/flores.mp4" type="video/mp4" />
       </video>
 
-      {/* Overlay rosa sutil - z-index 0 */}
-      <div className="absolute inset-0 bg-gradient-to-br from-rose-600/30 to-rose-500/40 z-0"></div>
+      {/* Overlay rosa sutil */}
+      <div className="absolute inset-0 bg-gradient-to-br from-rose-600/30 to-rose-500/40 z-[1]"></div>
 
-      {/* Content - z-index 10 */}
-      <div className="relative z-10 max-w-4xl mx-auto px-4 text-center">
+      {/* Content */}
+      <div className="relative z-[2] max-w-4xl mx-auto px-4 text-center">
         <div className="mb-6 flex justify-center">
           <div className="p-4 bg-white rounded-full shadow-lg">
             <Flower2 className="w-12 h-12 text-rose-500" />
