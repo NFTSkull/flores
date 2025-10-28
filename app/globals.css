@@ -1,26 +1,43 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --ink: #111827;
+  --stone: #6B7280;
+  --paper: #FFFAFC;
+  
+  --rose-50: #FFF7FA;
+  --rose-100: #FCE7F3;
+  --rose-200: #FBCFE8;
+  --rose-300: #F9A8D4;
+  --rose-400: #F472B6;
+  --rose-500: #EC4899;
+  --accent: #DB2777;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --color-ink: var(--ink);
+  --color-stone: var(--stone);
+  --color-paper: var(--paper);
+  --color-rose-50: var(--rose-50);
+  --color-rose-100: var(--rose-100);
+  --color-rose-200: var(--rose-200);
+  --color-rose-300: var(--rose-300);
+  --color-rose-400: var(--rose-400);
+  --color-rose-500: var(--rose-500);
+  --color-accent: var(--accent);
+  --font-sans: var(--font-inter);
+  --font-display: var(--font-playfair);
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--paper);
+  color: var(--ink);
+}
+
+.btn-primary {
+  @apply bg-rose-500 hover:bg-rose-400 text-white rounded-full px-6 py-3 transition-colors;
+}
+
+.card {
+  @apply rounded-2xl shadow-sm border border-rose-100;
 }

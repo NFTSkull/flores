@@ -1,36 +1,115 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Flores DeVolada 🌹
 
-## Getting Started
+Tienda en línea de flores con estética rosa elegante, construida con Next.js 14, TypeScript, TailwindCSS y Stripe Checkout.
 
-First, run the development server:
+## 🚀 Características
+
+- ✨ Catálogo de productos con filtros
+- 🛒 Carrito de compras persistente
+- 💳 Checkout integrado con Stripe
+- 📱 Diseño responsive y moderno
+- 🎨 Estética rosa elegante
+- 🔍 Optimizado para SEO
+
+## 🛠️ Stack Tecnológico
+
+- **Framework:** Next.js 14 (App Router)
+- **Lenguaje:** TypeScript
+- **Estilos:** TailwindCSS
+- **UI Components:** shadcn/ui
+- **Iconos:** lucide-react
+- **Pagos:** Stripe Checkout
+- **Fuentes:** Playfair Display + Inter
+
+## 📦 Instalación
 
 ```bash
+# Instalar dependencias
+npm install
+
+# Ejecutar en desarrollo
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+
+# Compilar para producción
+npm run build
+
+# Ejecutar en producción
+npm start
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 🔐 Variables de Entorno
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Crea un archivo `.env.local` con las siguientes variables:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```env
+NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY=pk_live_...
+STRIPE_SECRET_KEY=sk_live_...
+STRIPE_WEBHOOK_SECRET=whsec_...
+SITE_URL=https://flores-devolada.vercel.app
+```
 
-## Learn More
+## 🌐 Despliegue en Vercel
 
-To learn more about Next.js, take a look at the following resources:
+1. **Clona el repositorio:**
+   ```bash
+   git clone https://github.com/NFTSkull/flores.git
+   cd flores
+   ```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+2. **Instala las dependencias:**
+   ```bash
+   npm install
+   ```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+3. **Configura las variables de entorno en Vercel:**
+   - Ve a tu proyecto en [Vercel](https://vercel.com)
+   - Ve a Settings → Environment Variables
+   - Agrega las variables de entorno listadas arriba
 
-## Deploy on Vercel
+4. **Configura el webhook de Stripe:**
+   - En el Dashboard de Stripe, ve a Developers → Webhooks
+   - Agrega un nuevo endpoint: `https://tu-dominio.vercel.app/api/webhooks/stripe`
+   - Selecciona el evento: `checkout.session.completed`
+   - Copia el secret y agrégarlo a las variables de entorno en Vercel
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+5. **Despliega:**
+   ```bash
+   vercel --prod
+   ```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## 📁 Estructura del Proyecto
+
+```
+app/
+  (store)/          # Páginas de la tienda
+  (info)/           # Páginas informativas
+  api/              # API routes (checkout, cart, webhooks)
+components/         # Componentes React
+lib/                # Utilidades y datos semilla
+public/images/      # Imágenes de productos
+```
+
+## 🛣️ Rutas Principales
+
+- `/` - Home con hero y productos destacados
+- `/tienda` - Catálogo completo con filtros
+- `/producto/[slug]` - Ficha de producto
+- `/checkout` - Proceso de pago
+- `/exito` - Página de pago exitoso
+- `/cancelado` - Página de pago cancelado
+- `/nuestra-historia` - Información sobre la empresa
+- `/quienes-somos` - Acerca de nosotros
+- `/que-hacemos` - Servicios
+- `/contacto` - Formulario de contacto
+
+## 🎨 Paleta de Colores
+
+- **Rose:** `#EC4899`, `#F472B6`, `#FBCFE8`, etc.
+- **Accent:** `#DB2777`
+- **Ink:** `#111827`
+- **Stone:** `#6B7280`
+- **Paper:** `#FFFAFC`
+
+## 📝 Licencia
+
+Todos los derechos reservados © 2025 Flores DeVolada
