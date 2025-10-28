@@ -1,12 +1,12 @@
 # Flores DeVolada 🌹
 
-Tienda en línea de flores con estética rosa elegante, construida con Next.js 14, TypeScript, TailwindCSS y Stripe Checkout.
+Tienda en línea de flores con estética rosa elegante, construida con Next.js 14, TypeScript y TailwindCSS.
 
 ## 🚀 Características
 
 - ✨ Catálogo de productos con filtros
 - 🛒 Carrito de compras persistente
-- 💳 Checkout integrado con Stripe
+- 💳 Checkout simulado (Stripe pendiente de configurar)
 - 📱 Diseño responsive y moderno
 - 🎨 Estética rosa elegante
 - 🔍 Optimizado para SEO
@@ -18,7 +18,7 @@ Tienda en línea de flores con estética rosa elegante, construida con Next.js 1
 - **Estilos:** TailwindCSS
 - **UI Components:** shadcn/ui
 - **Iconos:** lucide-react
-- **Pagos:** Stripe Checkout
+- **Pagos:** Stripe Checkout (deshabilitado temporalmente)
 - **Fuentes:** Playfair Display + Inter
 
 ## 📦 Instalación
@@ -39,11 +39,13 @@ npm start
 
 ## 🔐 Variables de Entorno
 
-Crea un archivo `.env.local` con las siguientes variables:
+Actualmente no se requieren variables de entorno para el funcionamiento básico.
+
+**Nota:** Para habilitar Stripe Checkout en el futuro, configura:
 
 ```env
-NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY=pk_live_...
-STRIPE_SECRET_KEY=sk_live_...
+STRIPE_SECRET_KEY=sk_test_...
+NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY=pk_test_...
 STRIPE_WEBHOOK_SECRET=whsec_...
 SITE_URL=https://flores-devolada.vercel.app
 ```
