@@ -17,10 +17,15 @@ export function Hero({ onOpenCustomForm }: HeroProps) {
         loop
         muted
         playsInline
+        preload="auto"
         className="absolute inset-0 w-full h-full object-cover"
       >
         <source src="/videos/flores.mp4" type="video/mp4" />
+        Tu navegador no soporta video HTML5.
       </video>
+
+      {/* Fallback image si el video no carga */}
+      <div className="absolute inset-0 bg-gradient-to-br from-rose-50 to-rose-100" aria-hidden="true"></div>
 
       {/* Overlay con gradiente rosa */}
       <div className="absolute inset-0 bg-gradient-to-br from-rose-900/40 to-rose-800/40"></div>
