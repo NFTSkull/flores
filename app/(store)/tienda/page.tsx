@@ -1,20 +1,48 @@
 "use client";
 
 import { ProductGrid } from "@/components/product-grid";
-import { products } from "@/lib/products";
-import { useState } from "react";
+import { products, type ProductCategory } from "@/lib/products";
+import { useState, useMemo } from "react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { type Product } from "@/lib/products";
+import { Input } from "@/components/ui/input";
+import { Search, X } from "lucide-react";
 
-const allTags = Array.from(new Set(products.flatMap((p) => p.tags)));
+const categories: { value: ProductCategory | null; label: string }[] = [
+  { value: null, label: "Todos" },
+  { value: "cumpleaños", label: "Cumpleaños" },
+  { value: "ocasiones", label: "Ocasiones" },
+  { value: "flores-y-plantas", label: "Flores y Plantas" },
+  { value: "postres", label: "Postres" },
+  { value: "personalizados", label: "Personalizados" },
+  { value: "regalos", label: "Regalos" },
+];
 
 export default function TiendaPage() {
-  const [selectedTag, setSelectedTag] = useState<string | null>(null);
+  const [selectedCategory, setSelectedCategory] = useState<ProductCategory | null>(null);
+  const [searchQuery, setSearchQuery] = useState("");
 
-  const filteredProducts = selectedTag
-    ? products.filter((p) => p.tags.includes(selectedTag))
-    : products;
+  const filteredProducts = useMemo(() => {
+    let filtered = products;
+
+    // Filtrar por categoría
+    if (selectedCategory) {
+      filtered = filtered.filter((p) => p.category === selectedCategory);
+    }
+
+    // Filtrar por búsqueda
+    if (searchQuery.trim()) {
+      const query = searchQuery.toLowerCase().trim();
+      filtered = filtered.filter(
+        (p) =>
+          p.name.toLowerCase().includes(query) ||
+          p.description.toLowerCase().includes(query) ||
+          p.tags.some((tag) => tag.toLowerCase().includes(query))
+      );
+    }
+
+    return filtered;
+  }, [selectedCategory, searchQuery]);
 
   const handleAddToCart = async (productId: string) => {
     try {
@@ -45,36 +73,69 @@ export default function TiendaPage() {
           </p>
         </div>
 
-        {/* Filtros */}
+        {/* Buscador */}
+        <div className="mb-8 max-w-2xl mx-auto">
+          <div className="relative">
+            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-stone w-5 h-5" />
+            <Input
+              type="text"
+              placeholder="Buscar productos..."
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              className="pl-10 pr-10 py-6 text-lg"
+            />
+            {searchQuery && (
+              <button
+                onClick={() => setSearchQuery("")}
+                className="absolute right-3 top-1/2 transform -translate-y-1/2 text-stone hover:text-ink"
+              >
+                <X className="w-5 h-5" />
+              </button>
+            )}
+          </div>
+        </div>
+
+        {/* Categorías */}
         <div className="mb-8 flex flex-wrap gap-2 justify-center">
-          <Badge
-            variant={!selectedTag ? "default" : "outline"}
-            className="cursor-pointer px-4 py-2"
-            onClick={() => setSelectedTag(null)}
-          >
-            Todos
-          </Badge>
-          {allTags.map((tag) => (
+          {categories.map((category) => (
             <Badge
-              key={tag}
-              variant={selectedTag === tag ? "default" : "outline"}
-              className="cursor-pointer px-4 py-2 capitalize"
-              onClick={() => setSelectedTag(tag)}
+              key={category.value || "all"}
+              variant={selectedCategory === category.value ? "default" : "outline"}
+              className="cursor-pointer px-4 py-2 text-sm md:text-base"
+              onClick={() => setSelectedCategory(category.value)}
             >
-              {tag}
+              {category.label}
             </Badge>
           ))}
         </div>
+
+        {/* Resultados */}
+        {searchQuery && (
+          <div className="mb-6 text-center">
+            <p className="text-stone">
+              {filteredProducts.length === 0
+                ? "No se encontraron productos"
+                : `Se encontraron ${filteredProducts.length} producto${filteredProducts.length !== 1 ? "s" : ""}`}
+            </p>
+          </div>
+        )}
 
         {/* Grid de productos */}
         <ProductGrid products={filteredProducts} onAddToCart={handleAddToCart} />
 
         {filteredProducts.length === 0 && (
           <div className="text-center py-12">
-            <p className="text-stone text-lg">No se encontraron productos con este filtro.</p>
+            <p className="text-stone text-lg mb-4">
+              {searchQuery
+                ? "No se encontraron productos con tu búsqueda."
+                : "No hay productos en esta categoría."}
+            </p>
             <Button
-              onClick={() => setSelectedTag(null)}
-              className="mt-4 bg-rose-500 hover:bg-rose-600"
+              onClick={() => {
+                setSelectedCategory(null);
+                setSearchQuery("");
+              }}
+              className="bg-rose-500 hover:bg-rose-600"
             >
               Ver todos los productos
             </Button>

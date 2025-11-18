@@ -9,6 +9,7 @@ import { CartDrawer } from "./cart-drawer";
 
 const navItems = [
   { href: "/tienda", label: "Tienda" },
+  { href: "/personalizar-ramo", label: "Personalizar Ramo" },
   { href: "/contacto", label: "Contacto" },
 ];
 

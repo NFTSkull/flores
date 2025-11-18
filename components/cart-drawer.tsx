@@ -34,18 +34,18 @@ export function CartDrawer({ open, onOpenChange }: CartDrawerProps) {
   const [isPending, startTransition] = useTransition();
 
   useEffect(() => {
-    if (open) {
-      loadCart();
+    if (!open) return;
+    
+    async function loadCart() {
+      const response = await fetch("/api/cart");
+      if (response.ok) {
+        const data = await response.json();
+        setCart(data);
+      }
     }
+    loadCart();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [open]);
-
-  async function loadCart() {
-    const response = await fetch("/api/cart");
-    if (response.ok) {
-      const data = await response.json();
-      setCart(data);
-    }
-  }
 
   async function removeItem(productId: string) {
     startTransition(async () => {

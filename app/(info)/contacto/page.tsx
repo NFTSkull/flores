@@ -38,13 +38,66 @@ export default function ContactoPage() {
                   <div>
                     <p className="font-semibold text-ink mb-1">WhatsApp</p>
                     <a
-                      href="https://wa.me/5218112345678"
+                      href="https://wa.me/528129004396"
                       target="_blank"
                       rel="noopener noreferrer"
                       className="text-rose-500 hover:underline"
                     >
-                      +52 81 1234 5678
+                      +52 81 2900 4396
                     </a>
+                  </div>
+                  <div>
+                    <p className="font-semibold text-ink mb-1">Instagram</p>
+                    <div className="space-y-1">
+                      <a
+                        href="https://instagram.com/bluum_mty"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-rose-500 hover:underline block"
+                      >
+                        @bluum_mty
+                      </a>
+                      <a
+                        href="https://instagram.com/floresdevoladamty"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-rose-500 hover:underline block"
+                      >
+                        @floresdevoladamty
+                      </a>
+                    </div>
+                  </div>
+                  <div>
+                    <p className="font-semibold text-ink mb-1">Facebook</p>
+                    <a
+                      href="https://facebook.com/FloresDevolada.Mty"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-rose-500 hover:underline"
+                    >
+                      FloresDevolada.Mty
+                    </a>
+                  </div>
+                  <div>
+                    <p className="font-semibold text-ink mb-1">TikTok</p>
+                    <div className="space-y-1">
+                      <a
+                        href="https://tiktok.com/@floresdevoladamty"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-rose-500 hover:underline block"
+                      >
+                        @floresdevoladamty
+                      </a>
+                      <a
+                        href="https://tiktok.com/@bluum.mty"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-rose-500 hover:underline block"
+                      >
+                        @bluum.mty
+                      </a>
+                    </div>
                   </div>
                   <div>
                     <p className="font-semibold text-ink mb-1">Email</p>

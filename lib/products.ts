@@ -1,3 +1,11 @@
+export type ProductCategory = 
+  | "cumpleaños" 
+  | "ocasiones" 
+  | "flores-y-plantas" 
+  | "postres" 
+  | "personalizados" 
+  | "regalos";
+
 export type Product = {
   id: string;
   slug: string;
@@ -6,6 +14,7 @@ export type Product = {
   price: number; // en centavos MXN
   images: string[];
   tags: string[]; // ["ramos", "eventos", "san-valentin", etc]
+  category: ProductCategory; // Categoría principal del producto
 };
 
 export const products: Product[] = [
@@ -17,6 +26,7 @@ export const products: Product[] = [
     price: 89900,
     images: ["/images/rosas-clasico.jpg"],
     tags: ["ramos", "clasicos", "san-valentin"],
+    category: "flores-y-plantas",
   },
   {
     id: "bouquet-peonia-blush",
@@ -26,6 +36,7 @@ export const products: Product[] = [
     price: 159900,
     images: ["/images/peonia-blush.jpg"],
     tags: ["ramos", "premium", "eventos"],
+    category: "ocasiones",
   },
   {
     id: "caja-mixta-amor",
@@ -35,6 +46,7 @@ export const products: Product[] = [
     price: 129900,
     images: ["/images/caja-amor.jpg"],
     tags: ["cajas", "regalos", "san-valentin"],
+    category: "regalos",
   },
   {
     id: "arreglo-tulipanes",
@@ -44,6 +56,7 @@ export const products: Product[] = [
     price: 74900,
     images: ["/images/tulipanes.jpg"],
     tags: ["ramos", "colorido"],
+    category: "flores-y-plantas",
   },
   {
     id: "centro-mesa-elegante",
@@ -53,6 +66,7 @@ export const products: Product[] = [
     price: 219900,
     images: ["/images/centro-mesa.jpg"],
     tags: ["eventos", "premium"],
+    category: "ocasiones",
   },
   {
     id: "ramo-girasoles",
@@ -62,6 +76,7 @@ export const products: Product[] = [
     price: 89900,
     images: ["/images/girasoles.jpg"],
     tags: ["ramos", "colorido"],
+    category: "cumpleaños",
   },
 ];
 

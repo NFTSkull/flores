@@ -10,6 +10,7 @@ const footerLinks = {
     { href: "/contacto", label: "Contacto" },
   ],
   legal: [
+    { href: "/politicas", label: "Políticas" },
     { href: "/aviso-privacidad", label: "Aviso de Privacidad" },
     { href: "/terminos", label: "Términos y Condiciones" },
   ],
@@ -58,22 +59,35 @@ export function Footer() {
               </li>
               <li>
                 <a
-                  href="https://wa.me/5218112345678"
+                  href="https://wa.me/528129004396"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-center gap-2 text-rose-200 hover:text-white transition-colors text-sm"
                 >
                   <Phone className="w-4 h-4" />
-                  <span>WhatsApp</span>
+                  <span>+52 81 2900 4396</span>
                 </a>
               </li>
               <li>
                 <a
-                  href="mailto:hola@floresdevolada.com"
+                  href="https://instagram.com/bluum_mty"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="flex items-center gap-2 text-rose-200 hover:text-white transition-colors text-sm"
                 >
                   <Mail className="w-4 h-4" />
-                  <span>hola@floresdevolada.com</span>
+                  <span>@bluum_mty / @floresdevoladamty</span>
+                </a>
+              </li>
+              <li>
+                <a
+                  href="https://facebook.com/FloresDevolada.Mty"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-2 text-rose-200 hover:text-white transition-colors text-sm"
+                >
+                  <Mail className="w-4 h-4" />
+                  <span>FloresDevolada.Mty</span>
                 </a>
               </li>
             </ul>
