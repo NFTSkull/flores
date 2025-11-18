@@ -33,16 +33,16 @@ export function CartDrawer({ open, onOpenChange }: CartDrawerProps) {
   const [cart, setCart] = useState<{ items: CartItem[] }>({ items: [] });
   const [isPending, startTransition] = useTransition();
 
+  async function loadCart() {
+    const response = await fetch("/api/cart");
+    if (response.ok) {
+      const data = await response.json();
+      setCart(data);
+    }
+  }
+
   useEffect(() => {
     if (!open) return;
-    
-    async function loadCart() {
-      const response = await fetch("/api/cart");
-      if (response.ok) {
-        const data = await response.json();
-        setCart(data);
-      }
-    }
     loadCart();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [open]);
